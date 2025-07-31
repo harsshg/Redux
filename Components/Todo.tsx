@@ -1,15 +1,21 @@
 import { View, Text, Pressable } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeTodo } from '../android/feature/todo/todoSlice'
 import { SafeAreaView } from 'react-native'
 import { ScrollView } from 'react-native'
+import { TextInput } from 'react-native'
 
 
 const Todo = () => {
 
  const todo =  useSelector((state:any)=>state.todos)
-
+ const [editboxView,seteditboxView] = useState(false)
+ const [edittext,setedittext]= useState('')
+ const toggleEdit=()=>{
+    seteditboxView(!editboxView)
+    setedittext('')
+ }
  const dispatch = useDispatch()
   return (
     <SafeAreaView style={{backgroundColor:'rgba(255, 255, 255, 0.34)',height:530,width:370,marginTop:20,borderRadius:20,alignItems:'center',padding:10,borderWidth:3,borderColor:'red'}}>
@@ -19,10 +25,22 @@ const Todo = () => {
       {todo.map((todo:any)=>(
        <View key={todo.id} style={{backgroundColor:'white',width:'95%',height:50,borderRadius:7,alignItems:'center',display:'flex',flexDirection:'row',justifyContent:'space-between',padding:10,paddingRight:20 ,marginBottom:10,left:8.6
        }}>
-         <Text style={{fontSize:20,color:'rgb(255, 38, 0)',fontWeight:500}}>{todo.text}</Text> {/*{todo.text} */}
+         {editboxView ?(<TextInput 
+         placeholder={todo.text}
+         style={{fontSize:20,height:60,color:'rgb(255, 38, 0)',fontWeight:500}}
+         value={edittext}
+         onChangeText={setedittext}
+         />):(<Text style={{fontSize:20,color:'rgb(255, 38, 0)',fontWeight:500}}>{todo.text}</Text>)} {/*{todo.text} */}
+         <View style={{display:'flex',flexDirection:"row",gap:4}}>
          <Pressable
-         style={{backgroundColor:'red',width:30,height:30,alignItems:'center',justifyContent:'center',borderRadius:4}}
+         style={{backgroundColor:'rgb(136, 255, 0)',width:30,height:30,alignItems:'center',justifyContent:'center',borderRadius:4}}
+         onPress={toggleEdit}
+         ><Text style={{color:'black',fontSize:25,fontWeight:900,bottom:3}} >✎</Text></Pressable>
+{/* onPress={()=>dispatch(updateTodo(todo.id))} */}
+         <Pressable
+         style={{backgroundColor:'rgb(0,0,0)',width:30,height:30,alignItems:'center',justifyContent:'center',borderRadius:4}}
          onPress={()=>dispatch(removeTodo(todo.id))}><Text style={{color:'white',fontSize:20}} >X</Text></Pressable>
+         </View>
        </View>
      ))} 
      </ScrollView>
