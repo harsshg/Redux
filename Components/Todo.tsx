@@ -27,15 +27,22 @@ const Todo = () => {
        }}>
          {editboxView ?(<TextInput 
          placeholder={todo.text}
-         style={{fontSize:20,height:60,color:'rgb(255, 38, 0)',fontWeight:500}}
+         style={{fontSize:20,height:60,color:'grey',fontWeight:500}}
          value={edittext}
          onChangeText={setedittext}
          />):(<Text style={{fontSize:20,color:'rgb(255, 38, 0)',fontWeight:500}}>{todo.text}</Text>)} {/*{todo.text} */}
          <View style={{display:'flex',flexDirection:"row",gap:4}}>
-         <Pressable
+
+          {editboxView ?( <Pressable
          style={{backgroundColor:'rgb(136, 255, 0)',width:30,height:30,alignItems:'center',justifyContent:'center',borderRadius:4}}
          onPress={toggleEdit}
-         ><Text style={{color:'black',fontSize:25,fontWeight:900,bottom:3}} >✎</Text></Pressable>
+         ><Text style={{color:'black',fontSize:25,fontWeight:900,bottom:3}} >✔︎</Text></Pressable>):( <Pressable
+         style={{backgroundColor:'rgb(136, 255, 0)',width:30,height:30,alignItems:'center',justifyContent:'center',borderRadius:4}}
+         onPress={toggleEdit}
+         ><Text style={{color:'black',fontSize:25,fontWeight:900,bottom:3}} >✎</Text></Pressable>)} {/*{todo.text} */}
+
+
+        
 {/* onPress={()=>dispatch(updateTodo(todo.id))} */}
          <Pressable
          style={{backgroundColor:'rgb(0,0,0)',width:30,height:30,alignItems:'center',justifyContent:'center',borderRadius:4}}
