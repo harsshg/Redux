@@ -12,8 +12,8 @@ const App = () => {
     
     <SafeAreaView style={{backgroundColor:'rgba(0, 0, 0, 0.84)' ,height:'100%',width:'100%',alignItems:'center',justifyContent:'center'}}>
 
-      <AddTodo/>
-      <Todo/>
+    <AddTodo/>
+    <Todo/>
     </SafeAreaView>
     </Provider>
   )
