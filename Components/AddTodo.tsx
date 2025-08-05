@@ -11,9 +11,9 @@ const AddTodo = () => {
     const[input,setInput]=useState('')
     const dispatch = useDispatch()
     
-    const showToast = () => {
-    ToastAndroid.show('You just added a task !', ToastAndroid.SHORT);
-  };
+//     const showToast = () => {
+//     ToastAndroid.show('You just added a task !', ToastAndroid.SHORT);
+//   };
 
     const addtodoHandler =()=>{ 
         if (input.trim()) { 
@@ -32,7 +32,7 @@ const AddTodo = () => {
         />
         <TouchableOpacity
         style={{height:35,width:90,borderWidth:2,alignItems:'center',justifyContent:'center',borderRadius:5,backgroundColor:'rgb(255, 0, 38)',opacity:.9}}
-        onPress={()=>{addtodoHandler(),showToast()}}>
+        onPress={()=>{addtodoHandler()}}>
             <Text  style={{fontWeight:500,color:'white'}}>Add Task</Text>
         </TouchableOpacity>
     </SafeAreaView>

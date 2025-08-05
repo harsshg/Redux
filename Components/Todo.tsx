@@ -2,14 +2,19 @@ import { View, Text, Pressable, TextInput, SafeAreaView, ScrollView,ToastAndroid
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeTodo, updateTodo } from '../android/feature/todo/todoSlice';
+import {
+  responsiveHeight as hp,
+  responsiveWidth as wp,
+  responsiveFontSize as fp,
+} from 'react-native-responsive-dimensions';
 
 const Todo = () => {
 
-  const DeleteToast = () => {
-    ToastAndroid.show('You just Deleted a task !', ToastAndroid.SHORT);
-  };
+  // const DeleteToast = () => {
+  //   ToastAndroid.show('You just Deleted a task !', ToastAndroid.SHORT);
+  // };
 
-  const todos = useSelector((state: any) => state.todos);
+  const todos = useSelector((state: any) => state.todos);``
   const dispatch = useDispatch();
 
   const [editingTodoId, setEditingTodoId] = useState<number | null>(null);
@@ -128,7 +133,7 @@ const Todo = () => {
                   justifyContent: 'center',
                   borderRadius: 4,
                 }}
-                onPress={() => dispatch(removeTodo(todo.id), DeleteToast())}
+                onPress={() => dispatch(removeTodo(todo.id))}
               >
                 <Text style={{ color: 'white', fontSize: 18 }}>X</Text>
               </Pressable>
